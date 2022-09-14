@@ -12,7 +12,35 @@ app.get("/", function(req,res){
 app.post("/", function(req, res){
     var number1 = Number(req.body.number1);
     var number2 = Number(req.body.number2);
-    var result = number1 + number2;
+    var operator = req.body.operator;
+
+    var result;
+    switch (operator)
+    { case "+":
+                result = number1 + number2;
+                break;
+      case "-":
+                result = number1 - number2;
+                break;
+      case "*":
+                result = number1 * number2;
+                break;
+      case "/":
+                if(number2 === 0) res.send("Can't divide with 0")
+                else {
+                  result = number1 / number2
+                }
+                break
+      case "%":
+                result = number1 % number2;
+                break;
+      case "^":
+                return Math.pow(number1, number2);
+                break;
+      default:
+                res.send(`Unsupported operator: ` + operator)
+    }
+
     res.send(`The result of the calculation is ` + result);
 })
 
