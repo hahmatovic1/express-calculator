@@ -10,7 +10,10 @@ app.get("/", function(req,res){
 })
 
 app.post("/", function(req, res){
-  console.log(req.body)
+    var number1 = Number(req.body.number1);
+    var number2 = Number(req.body.number2);
+    var result = number1 + number2;
+    res.send(`The result of the calculation is ` + result);
 })
 
 app.listen(3000, function(){
